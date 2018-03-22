@@ -10,12 +10,12 @@ except ImportError:
 module_name = "treetagger"
 if(sys.version_info < (3, 0)):
   module_name = "treetagger_python2"
-  
+
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
 
 setup(name='treetagger',
-      version='1.0.1',
+      version='1.0.2',
       description='A Python module for interfacing with the Treetagger by Helmut Schmid.',
       long_description=README,
       author='Mirko Otto',
@@ -25,6 +25,3 @@ setup(name='treetagger',
       install_requires=['nltk'],
       license='GPL Version 3',
     )
-
-
-

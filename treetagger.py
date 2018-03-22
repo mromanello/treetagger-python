@@ -4,9 +4,7 @@
 # Copyright (C) Mirko Otto
 # Author: Mirko Otto <dropsy@gmail.com>
 
-"""
-A Python module for interfacing with the Treetagger by Helmut Schmid.
-"""
+"""A Python module for interfacing with the Treetagger by Helmut Schmid."""
 
 import os
 from subprocess import Popen, PIPE
@@ -17,7 +15,24 @@ from sys import platform as _platform
 
 _treetagger_url = 'http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/'
 
-_treetagger_languages = ['latin', 'bulgarian', 'dutch', 'english', 'estonian', 'finnish', 'french', 'galician', 'german', 'italian', 'polish', 'russian', 'slovak', 'slovak2', 'spanish']
+_treetagger_languages = [
+    'ancient-greek-utf8',
+    'latin',
+    'bulgarian',
+    'dutch',
+    'english',
+    'estonian',
+    'finnish',
+    'french',
+    'galician',
+    'german',
+    'italian',
+    'polish',
+    'russian',
+    'slovak',
+    'slovak2',
+    'spanish'
+]
 
 class TreeTagger(TaggerI):
     r"""
@@ -61,7 +76,7 @@ class TreeTagger(TaggerI):
          ['.', '$.', '.']]
     """
 
-    def __init__(self, path_to_home=None, language='german', 
+    def __init__(self, path_to_home=None, language='german',
                  verbose=False, abbreviation_list=None):
         """
         Initialize the TreeTagger.
@@ -114,12 +129,12 @@ class TreeTagger(TaggerI):
 
         # Run the tagger and get the output
         if(self._abbr_list is None):
-            p = Popen([self._treetagger_bin], 
+            p = Popen([self._treetagger_bin],
                         shell=False, stdin=PIPE, stdout=PIPE, stderr=PIPE)
         elif(self._abbr_list is not None):
-            p = Popen([self._treetagger_bin,"-a",self._abbr_list], 
+            p = Popen([self._treetagger_bin,"-a",self._abbr_list],
                         shell=False, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-        
+
         #(stdout, stderr) = p.communicate(bytes(_input, 'UTF-8'))
         (stdout, stderr) = p.communicate(str(_input).encode('utf-8'))
 

@@ -24,7 +24,7 @@ _treetagger_url = 'http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/'
 
 _treetagger_languages = {
 u'latin-1':['latin', 'latinIT', 'mongolian', 'swahili'],
-u'utf-8' : ['bulgarian', 'dutch', 'english', 'estonian', 'finnish', 'french', 'galician', 'german', 'italian', 'polish', 'russian', 'slovak', 'slovak2', 'spanish']}
+u'utf-8' : ['ancient-greek-utf8', 'bulgarian', 'dutch', 'english', 'estonian', 'finnish', 'french', 'galician', 'german', 'italian', 'polish', 'russian', 'slovak', 'slovak2', 'spanish']}
 
 """The default encoding used by TreeTagger: utf-8. u'' means latin-1; ISO-8859-1"""
 _treetagger_charset = [u'utf-8', u'latin-1']
@@ -79,7 +79,7 @@ class TreeTagger(TaggerI):
          [u'.', u'$.', u'.']]
     """
 
-    def __init__(self, path_to_home=None, language='german', 
+    def __init__(self, path_to_home=None, language='german',
                  encoding='utf-8', verbose=False, abbreviation_list=None):
         """
         Initialize the TreeTagger.
@@ -137,12 +137,12 @@ class TreeTagger(TaggerI):
 
         # Run the tagger and get the output
         if(self._abbr_list is None):
-            p = Popen([self._treetagger_bin], 
+            p = Popen([self._treetagger_bin],
                         shell=False, stdin=PIPE, stdout=PIPE, stderr=PIPE)
         elif(self._abbr_list is not None):
-            p = Popen([self._treetagger_bin,"-a",self._abbr_list], 
+            p = Popen([self._treetagger_bin,"-a",self._abbr_list],
                         shell=False, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-        
+
         (stdout, stderr) = p.communicate(_input)
 
         # Check the return code.
